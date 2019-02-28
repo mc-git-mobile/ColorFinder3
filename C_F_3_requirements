@@ -1,0 +1,75 @@
+                                          ColorPicker using Intents
+                                                Introduction
+                                                
+The purpose of this assignment is for you to get practice using an Intent as well as for you to think more about the user's experience when using your app.
+The Assignment
+                                        Adding to the ColorPicker
+                                        
+You are to add even more functionality to your color finder program for Android. For this assignment, you should add Intent filters to your app. The App should startup from a client App using an implicit Intent when the client App wants to fetch a color.
+To fetch a color, the ColorPicker App should appear and allow the user to select a color. Once selected, the RGB values for the color should be returned to the client App. The client should activate the ColorPicker with Activity.startActivityForResult(). The value should be returned from the ColorPicker in the finish() function with Activity.setResult() where a new Intent is passed back with the red, green, and blue values stored in the Intent's extras Bundle.
+
+                                                  The Client
+                                                  
+Your grade for this assignment depends on how intricate your client is.
+For a maximum score of 70, have your client display the color retrieved.
+For a maximum score of 85, have the client allow the user to set colors of various Widgets.
+For a maximum score of 100, write a color blender app that requests 2 colors, colorA and colorB, from the ColorPicker, displays the two colors, and provides a slider that the user can use to blend the two colors as follows:
+If the slider is at one extreme, colorA is displayed
+If the slider is at the other extreme, then colorB is displayed
+If the slider is in the middle somewhere, a blending of the colors is displayed as a linear function of the slider's relative position.
+Functionality and ease of use and wow factor will be considered in evaluation of your App.
+
+                                                    Hints
+                                                    
+Here is one way you might implement the communication between client and ColorPicker.
+In the Manifest File of the ColorPicker Activity:
+
+
+<intent-filter>
+    <action android:name="msud.cs3013.ACTION_COLOR" />
+    <category android:name="android.intent.category.DEFAULT" />
+</intent-filter>
+
+                                                      CODE:
+on the client side In your clientApp that calls ColorPicker:
+Here is the call to get the color ==>
+
+      startActivityForResult(intent, request_code);  
+where the intent is an Intent object which holds a specific key-value pair in the extras Bundle. The key is what is important - the value does not matter. The ColorPicker can check for the key's existance with a call to intent.extras.containsKey(YOUR_KEY).
+
+You can check the value of request_code in the onActivityResult() method to determine which activity is returning, if you have more than one.
+
+implement the method: onActivityResult(requestCode: Int, resultCode: Int, data: Intent )
+check for resultCode == RESULT_OK and requestcode == <your_request_code>, the code you originally sent so your program knows what activity is returning.
+do something with the data (that contains the color ints) returned.
+In ColorPicker To check for, and handle the request in the Activity's onCreate() method:
+
+	val info = intent.extras
+	if (info != null) { 
+	
+        /* 
+        *1 see if the key value is in the extras Bundle using info.containsKey(YOUR_KEY)
+        *2 if it does - provide a button for the user to click to approve the color and have 
+        ** it returned to the client.
+        *3 to make this work, put the button in your layout but have it default to invisible:
+        ** using:  android:visibility="invisible"  in the layout file
+        *4 when the request from the client is determined, have the button made visible and
+        ** and supply an onClickListener() to handle the click
+        */
+    } 
+when the ColorPicker is ready to return:
+
+
+    override fun finish() {
+       // put return color information in a new Intent's extras
+          :
+          :
+       setResult(RESULT_OK, <intent_that_contains_data> )
+       super.finish()
+    }
+    
+                                                      Teaming Up
+                                                      
+You can work alone or with one partner. If you choose to work with a partner, both of you must be involved in writing the program. You should make sure that you can schedule time to work together.
+Due Date
+You are to be ready to demonstrate your App in class by Thursday March 7th, 2019. Also, email me your project.
