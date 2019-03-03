@@ -2,7 +2,8 @@ package com.example.colorfinder3
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
@@ -14,7 +15,12 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : FragmentActivity(), fragment.fragmentListener {
+
+    private var frag: Fragment? = null // fragment to call
+
+
+
     var textValue = 0
     //these arrays are the ones that need to be changed
     //you just need to get the saved color from the other ap and change these array values
@@ -26,7 +32,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        frag = Fragment()
         setSupportActionBar(toolbar)
+        supportFragmentManager.beginTransaction().add(R.id.fragframe, frag as fragment).commit()
         var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
         var surface2 = this.findViewById<SurfaceView>(R.id.mirror2)
         var seekBar1 = this.findViewById<SeekBar>(R.id.seekBar)

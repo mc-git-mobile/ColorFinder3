@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Color Finder 3</string>
     <string name="action_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+    <string name="seekVal1">seek1</string>
+    <string name="seekVal2">seek2</string>
+    <string name="SeekVal3">seek3</string>
+    <string name="nameIt">Name the Color</string>
+
+
+
 </resources>
