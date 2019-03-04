@@ -7,22 +7,14 @@
         android:layout_height="match_parent">
 
     <SurfaceView
-            android:layout_width="384dp"
+            android:layout_width="365dp"
             android:layout_height="222dp"
             android:id="@+id/surfaceView" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" android:layout_marginTop="28dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.493" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.093"/>
-    <SeekBar
-            android:layout_width="194dp"
-            android:layout_height="67dp" android:id="@+id/SeekBarBlue"
-            android:layout_marginBottom="84dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/SeekBarGreen"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintVertical_bias="0.513" app:layout_constraintHorizontal_bias="0.54"/>
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.097"/>
     <TextView
             android:text="@string/seekVal2"
             android:layout_width="60dp"
@@ -66,7 +58,9 @@
             app:layout_constraintStart_toEndOf="@+id/SeekBarRed" android:layout_marginStart="12dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             android:layout_marginTop="368dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"/>
     <TextView
             android:text="@string/red"
             android:layout_width="95dp"
@@ -74,7 +68,17 @@
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/GreenSeek" app:layout_constraintVertical_bias="0.942"
-            android:layout_marginStart="20dp" app:layout_constraintStart_toStartOf="parent"/>
+            android:layout_marginStart="20dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.01"/>
+    <SeekBar
+            android:layout_width="194dp"
+            android:layout_height="67dp" android:id="@+id/SeekBarBlue"
+            android:layout_marginBottom="84dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/SeekBarGreen"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintVertical_bias="0.513" app:layout_constraintHorizontal_bias="0.54"/>
     <SeekBar
             android:layout_width="194dp"
             android:layout_height="67dp" android:id="@+id/SeekBarRed"
@@ -92,25 +96,6 @@
             app:layout_constraintHorizontal_bias="0.542" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.709"/>
-    <Button
-            android:text="@string/save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/save"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginBottom="40dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.973"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.012"/>
-    <FrameLayout
-            android:layout_width="158dp"
-            android:layout_height="12dp"
-            android:id="@+id/frag"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.465"
-            app:layout_constraintVertical_bias="0.0" android:layout_marginTop="8dp">
-    </FrameLayout>
 
 
 </android.support.constraint.ConstraintLayout>
