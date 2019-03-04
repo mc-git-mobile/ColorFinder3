@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import android.view.SurfaceView
@@ -15,11 +14,10 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : FragmentActivity(), fragment.fragmentListener {
 
-    private var frag: Fragment? = null // fragment to call
+class MainActivity : FragmentActivity(), ColorFragment.fragmentListener {
 
-
+    private var frag1: Fragment? = null // fragment to call
 
     var textValue = 0
     //these arrays are the ones that need to be changed
@@ -32,9 +30,11 @@ class MainActivity : FragmentActivity(), fragment.fragmentListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        frag = Fragment()
-        setSupportActionBar(toolbar)
-        supportFragmentManager.beginTransaction().add(R.id.fragframe, frag as fragment).commit()
+
+        frag1 = ColorFragment()
+        //setSupportActionBar(toolbar)
+        supportFragmentManager.beginTransaction().add(R.id.fragment, frag1 as ColorFragment).commit()
+
         var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
         var surface2 = this.findViewById<SurfaceView>(R.id.mirror2)
         var seekBar1 = this.findViewById<SeekBar>(R.id.seekBar)
@@ -43,6 +43,7 @@ class MainActivity : FragmentActivity(), fragment.fragmentListener {
         mirror.setBackgroundColor(Color.rgb(color1[0], color1[1], color1[2]))
         mirror2.setBackgroundColor(Color.rgb(color2[0], color2[1], color2[2]))
         colorVal.text = textValue.toString()
+
         surface1.setOnClickListener {
             val coast= Toast.makeText(applicationContext, "Insert color one here", Toast.LENGTH_LONG)
             coast.show()
@@ -71,6 +72,25 @@ class MainActivity : FragmentActivity(), fragment.fragmentListener {
         })
     }
 
+    override fun onDoneClick1(value1: IntArray){
+        //val surfaceFrag1 = supportFragmentManager.findFragmentById(R.id.frag) as ColorFragment
+        var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
+        surface1.setBackgroundColor(Color.rgb(color1[0],color1[1],color1[2]))
+
+    }
+
+    override fun switchFragment(frag: Fragment) {
+        when (frag) {
+            is ColorFragment -> {
+                if (frag1 == null) {
+                    frag1 = ColorFragment()
+                }
+                supportFragmentManager.beginTransaction().replace(R.id.fragframe, frag!!).commit()
+            }
+        }
+    }
+
+
     fun mergeValues(){
         //0,50,100
         //50,150,200
@@ -79,7 +99,7 @@ class MainActivity : FragmentActivity(), fragment.fragmentListener {
         color3[0] = ((percent2 * color2[0]) + (percent1 * color1[0])) / 100
         color3[1] = ((percent2 * color2[1]) + (percent1 * color1[1])) / 100
         color3[2] = ((percent2 * color2[2]) + (percent1 * color1[2])) / 100
-        //For proof that the cpercents are right for color merging
+        //For proof that the percents are right for color merging
         //val coast= Toast.makeText(applicationContext, "$percent1 , $percent2", Toast.LENGTH_LONG)
        // coast.show()
     }

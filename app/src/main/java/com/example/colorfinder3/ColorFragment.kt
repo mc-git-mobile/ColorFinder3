@@ -1,5 +1,6 @@
 package com.example.colorfinder3
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -12,21 +13,39 @@ import android.widget.SeekBar
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_layout.*
+import java.lang.ClassCastException
 
-class fragment : Fragment() {
+class ColorFragment : Fragment() {
 
     var value1 = 0
     var value2 = 0
     var value3 = 0
 
-    private var activityCallback: fragment.fragmentListener? = null
+    var value = intArrayOf(0, 0, 0)
+
+    private var activityCallback: ColorFragment.fragmentListener? = null
 
     interface fragmentListener {
-        fun on
+        fun onDoneClick1(sur: IntArray)
+        fun switchFragment(frag: Fragment)
+
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        try {
+            activityCallback = context as fragmentListener
+        } catch (e: ClassCastException) {
+            throw ClassCastException(
+                context?.toString()
+                        + " must implement fragmentListener"
+            )
+        }
     }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
 
         val view = inflater?.inflate(R.layout.fragment_layout, container, false)
 
@@ -38,18 +57,17 @@ class fragment : Fragment() {
         val seekVal2: TextView? = view?.findViewById(R.id.SeekValGreen)
         val seekVal3: TextView? = view?.findViewById(R.id.SeekValBlue)
 
-        // ***********************************************************************
-
         seekBar1?.progress = value1
         seekBar2?.progress = value2
         seekBar3?.progress = value3
 
+        val surface4: SurfaceView? = view?.findViewById(R.id.surfaceView)
 
-        val surface4: SurfaceView? = view?.findViewById(R.id.surfaceView) // create surface variable
+        val doneButton: Button? = view?.findViewById(R.id.save)
 
         //***************************************************************************
         // Seek bar 1 controls
-        seekBar1?.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+        seekBar1?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onProgressChanged(seekBar: SeekBar?, i: Int, b: Boolean) {
@@ -57,12 +75,14 @@ class fragment : Fragment() {
                 seekVal1?.text = "$value1"
                 seekVal1?.setTextColor(Color.rgb(value1, 0, 0))
                 surface4?.setBackgroundColor(Color.rgb(value1, value2, value3))
+                value[0] = i
+                //activityCallback?.onButtonCl
             }
         })
         //****************************************************************************
         // Seek bar 2 controls
 
-        seekBar2?.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+        seekBar2?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onProgressChanged(seekBar: SeekBar?, i: Int, b: Boolean) {
@@ -70,11 +90,12 @@ class fragment : Fragment() {
                 seekVal2?.text = "$value2"
                 seekVal2?.setTextColor(Color.rgb(0, value2, 0))
                 surface4?.setBackgroundColor(Color.rgb(value1, value2, value3))
+                value[1] = i
             }
         })
         //***************************************************************************
         // Seek bar 3 controls
-        seekBar3?.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+        seekBar3?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {} // unused
             override fun onStartTrackingTouch(seekBar: SeekBar?) {} // unused
             override fun onProgressChanged(seekBar: SeekBar?, i: Int, b: Boolean) {
@@ -82,18 +103,20 @@ class fragment : Fragment() {
                 seekVal3?.text = "$value3"
                 seekVal3?.setTextColor(Color.rgb(0, 0, value3))
                 surface4?.setBackgroundColor(Color.rgb(value1, value2, value3))
+                value[2] = i
             }
         })
         //***************************************************************************
 
-        return view
+        doneButton?.setOnClickListener { doneButtonClicked(it) }
+
+        return inflater.inflate(R.layout.fragment_layout, container, false)
 
     } // End of on_Create
 
-
-
-
-
+    private fun doneButtonClicked(view: View) {
+        activityCallback?.onDoneClick1(value)
+    }
 
 
 

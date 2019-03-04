@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <SurfaceView
-            android:layout_width="322dp"
+            android:layout_width="384dp"
             android:layout_height="222dp"
             android:id="@+id/surfaceView" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" android:layout_marginTop="28dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginTop="28dp"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0.493" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.093"/>
     <SeekBar
@@ -21,12 +24,57 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintVertical_bias="0.513" app:layout_constraintHorizontal_bias="0.54"/>
     <TextView
+            android:text="@string/seekVal2"
+            android:layout_width="60dp"
+            android:layout_height="67dp" android:id="@+id/SeekValGreen"
+            android:layout_marginStart="12dp" app:layout_constraintStart_toEndOf="@+id/SeekBarGreen"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/SeekValRed"/>
+    <TextView
+            android:text="@string/blue"
+            android:layout_width="95dp"
+            android:layout_height="67dp" android:id="@+id/BlueSeek"
+            app:layout_constraintEnd_toStartOf="@+id/SeekBarBlue" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="1.0"
+            android:layout_marginBottom="100dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/GreenSeek"
+            app:layout_constraintVertical_bias="0.904"/>
+    <TextView
+            android:text="@string/SeekVal3"
+            android:layout_width="60dp"
+            android:layout_height="67dp" android:id="@+id/SeekValBlue"
+            app:layout_constraintStart_toEndOf="@+id/SeekBarBlue" android:layout_marginStart="12dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintHorizontal_bias="0.148"
+            android:layout_marginBottom="100dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/SeekValGreen"
+            app:layout_constraintVertical_bias="0.909"/>
+    <TextView
+            android:text="@string/green"
+            android:layout_width="95dp"
+            android:layout_height="67dp" android:id="@+id/GreenSeek"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/SeekBarGreen" android:layout_marginEnd="2dp"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.709"/>
+    <TextView
             android:text="@string/seekVal1"
             android:layout_width="60dp"
             android:layout_height="67dp" android:id="@+id/SeekValRed"
             app:layout_constraintStart_toEndOf="@+id/SeekBarRed" android:layout_marginStart="12dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginTop="368dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginTop="368dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.0"/>
+    <TextView
+            android:text="@string/red"
+            android:layout_width="95dp"
+            android:layout_height="67dp" android:id="@+id/RedSeek"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/GreenSeek" app:layout_constraintVertical_bias="0.942"
+            android:layout_marginStart="20dp" app:layout_constraintStart_toStartOf="parent"/>
     <SeekBar
             android:layout_width="194dp"
             android:layout_height="67dp" android:id="@+id/SeekBarRed"
@@ -44,60 +92,24 @@
             app:layout_constraintHorizontal_bias="0.542" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.709"/>
-    <TextView
-            android:text="@string/seekVal2"
-            android:layout_width="60dp"
-            android:layout_height="67dp" android:id="@+id/SeekValGreen"
-            android:layout_marginStart="12dp" app:layout_constraintStart_toEndOf="@+id/SeekBarGreen"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/SeekValRed"/>
-    <TextView
-            android:text="@string/SeekVal3"
-            android:layout_width="60dp"
-            android:layout_height="67dp" android:id="@+id/SeekValBlue"
-            app:layout_constraintStart_toEndOf="@+id/SeekBarBlue" android:layout_marginStart="12dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintHorizontal_bias="0.148"
-            android:layout_marginBottom="100dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/SeekValGreen"
-            app:layout_constraintVertical_bias="0.909"/>
-    <TextView
-            android:text="@string/red"
-            android:layout_width="95dp"
-            android:layout_height="67dp" android:id="@+id/RedSeek"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/GreenSeek" app:layout_constraintVertical_bias="0.942"
-            android:layout_marginStart="20dp" app:layout_constraintStart_toStartOf="parent"
-    />
-    <TextView
-            android:text="@string/green"
-            android:layout_width="95dp"
-            android:layout_height="67dp" android:id="@+id/GreenSeek"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="20dp"
-            app:layout_constraintEnd_toStartOf="@+id/SeekBarGreen" android:layout_marginEnd="2dp"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+            android:text="@string/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/save"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.973"
             android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.709"/>
-    <TextView
-            android:text="@string/blue"
-            android:layout_width="95dp"
-            android:layout_height="67dp" android:id="@+id/BlueSeek"
-            app:layout_constraintEnd_toStartOf="@+id/SeekBarBlue" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="1.0"
-            android:layout_marginBottom="100dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/GreenSeek"
-            app:layout_constraintVertical_bias="0.904"/>
+            app:layout_constraintVertical_bias="0.012"/>
     <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="31dp"
-            android:id="@+id/fragframe"
+            android:layout_width="158dp"
+            android:layout_height="12dp"
+            android:id="@+id/frag"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.465"
+            app:layout_constraintVertical_bias="0.0" android:layout_marginTop="8dp">
     </FrameLayout>
 
 
