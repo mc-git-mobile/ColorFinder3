@@ -1,6 +1,7 @@
 package com.example.colorfinder3
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -30,9 +31,26 @@ class ColorFragment : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_layout)
         //setSupportActionBar(toolbar)
+        /*
+        val bundle = intent.extras
+        if (bundle != null) {
+            val dat =
+        }
+        */
 
+        //val a : Array<MainActivity.Attachment> = intent.getSerializableExtra("Attachments") as Array<Attachment>
+        //Attachments = a.toCollection(ArrayList())
+
+        //val sur1 = intent.get
+        //intent.putExtra("sur1", color3)
+        //startActivity(intent)
 
         //val view = inflater?.inflate(R.layout.fragment_layout, container, false)
+        //val intent = Intent.
+
+        var col = intent.getIntArrayExtra("col1")
+
+
 
 
 
@@ -64,6 +82,7 @@ class ColorFragment : AppCompatActivity() {
                 seekVal1?.setTextColor(Color.rgb(value1, 0, 0))
                 surface4?.setBackgroundColor(Color.rgb(value1, value2, value3))
                 value[0] = i
+                col[0] = value1
                 //activityCallback?.onButtonCl
             }
         })
@@ -79,6 +98,7 @@ class ColorFragment : AppCompatActivity() {
                 seekVal2?.setTextColor(Color.rgb(0, value2, 0))
                 surface4?.setBackgroundColor(Color.rgb(value1, value2, value3))
                 value[1] = i
+                col[1] = value2
             }
         })
         //***************************************************************************
@@ -92,6 +112,7 @@ class ColorFragment : AppCompatActivity() {
                 seekVal3?.setTextColor(Color.rgb(0, 0, value3))
                 surface4?.setBackgroundColor(Color.rgb(value1, value2, value3))
                 value[2] = i
+                col[2] = value3
             }
         })
         //***************************************************************************

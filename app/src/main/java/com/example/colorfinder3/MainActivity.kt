@@ -16,6 +16,7 @@ import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.io.Serializable
 
 
 class MainActivity : AppCompatActivity() {
@@ -48,7 +49,21 @@ class MainActivity : AppCompatActivity() {
 
         button1.setOnClickListener {
             val intent = Intent(this, ColorFragment :: class.java)
+            var col1 = intArrayOf(0, 0, 0)
+            val red = "0"
+            val blue = "0"
+            val green = "0"
+            //intent.putExtra("red", red)
+            //intent.putExtra("blue", blue)
+            //intent.putExtra("green", green)
+            intent.putExtra("col1", color1)
+
             startActivity(intent)
+
+
+            /////////////////////////////////////
+            //data class Attachment(val name: String, val Content: String) : Serializable
+            /////////////////////////////////////
         }
 
         surface1.setOnClickListener {
