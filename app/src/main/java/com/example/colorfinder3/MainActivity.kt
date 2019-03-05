@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var button1 = this.findViewById<Button>(R.id.pick1)
+        //var button1 = this.findViewById<Button>(R.id.pick1)
 
 
         var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         mirror.setBackgroundColor(Color.rgb(color1[0], color1[1], color1[2]))
         mirror2.setBackgroundColor(Color.rgb(color2[0], color2[1], color2[2]))
         colorVal.text = textValue.toString()
-
+/*
         button1.setOnClickListener {
             val intent = Intent(this, ColorFragment :: class.java)
             var col1 = intArrayOf(0, 0, 0)
@@ -65,15 +65,38 @@ class MainActivity : AppCompatActivity() {
             //data class Attachment(val name: String, val Content: String) : Serializable
             /////////////////////////////////////
         }
+        */
 
         surface1.setOnClickListener {
-            val coast= Toast.makeText(applicationContext, "Insert color one here", Toast.LENGTH_LONG)
-            coast.show()
+            //val coast= Toast.makeText(applicationContext, "Insert color one here", Toast.LENGTH_LONG)
+            //coast.show()
+            val intent = Intent(this, ColorFragment :: class.java)
+            //var col1 = intArrayOf(0, 0, 0)
+            //val red = "0"
+            //val blue = "0"
+            //val green = "0"
+            //intent.putExtra("red", red)
+            //intent.putExtra("blue", blue)
+            //intent.putExtra("green", green)
+            intent.putExtra("col1", color1)
+
+            startActivity(intent)
         }
 
         surface2.setOnClickListener {
-            val coast= Toast.makeText(applicationContext, "Insert color two here", Toast.LENGTH_LONG)
-            coast.show()
+            //val coast= Toast.makeText(applicationContext, "Insert color two here", Toast.LENGTH_LONG)
+            //coast.show()
+            val intent = Intent(this, ColorFragment :: class.java)
+            //var col1 = intArrayOf(0, 0, 0)
+            //val red = "0"
+            //val blue = "0"
+            //val green = "0"
+            //intent.putExtra("red", red)
+            //intent.putExtra("blue", blue)
+            //intent.putExtra("green", green)
+            intent.putExtra("col2", color2)
+
+            startActivity(intent)
         }
 
         seekBar1.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
