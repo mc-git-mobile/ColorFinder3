@@ -1,12 +1,15 @@
 package com.example.colorfinder3
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.SurfaceView
+import android.view.View
+import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
@@ -15,9 +18,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 
-class MainActivity : FragmentActivity(), ColorFragment.fragmentListener {
+class MainActivity : AppCompatActivity() {
 
-    private var frag1: Fragment? = null // fragment to call
+    //private var frag1: Fragment? = null // fragment to call
 
     var textValue = 0
     //these arrays are the ones that need to be changed
@@ -31,9 +34,8 @@ class MainActivity : FragmentActivity(), ColorFragment.fragmentListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        frag1 = ColorFragment()
-        //setSupportActionBar(toolbar)
-        supportFragmentManager.beginTransaction().add(R.id.fragment, frag1 as ColorFragment).commit()
+        var button1 = this.findViewById<Button>(R.id.pick1)
+
 
         var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
         var surface2 = this.findViewById<SurfaceView>(R.id.mirror2)
@@ -43,6 +45,11 @@ class MainActivity : FragmentActivity(), ColorFragment.fragmentListener {
         mirror.setBackgroundColor(Color.rgb(color1[0], color1[1], color1[2]))
         mirror2.setBackgroundColor(Color.rgb(color2[0], color2[1], color2[2]))
         colorVal.text = textValue.toString()
+
+        button1.setOnClickListener {
+            val intent = Intent(this, ColorFragment :: class.java)
+            startActivity(intent)
+        }
 
         surface1.setOnClickListener {
             val coast= Toast.makeText(applicationContext, "Insert color one here", Toast.LENGTH_LONG)
@@ -72,24 +79,6 @@ class MainActivity : FragmentActivity(), ColorFragment.fragmentListener {
         })
     }
 
-    override fun onDoneClick1(value1: IntArray){
-        //val surfaceFrag1 = supportFragmentManager.findFragmentById(R.id.frag) as ColorFragment
-        var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
-        surface1.setBackgroundColor(Color.rgb(color1[0],color1[1],color1[2]))
-
-    }
-
-    override fun switchFragment(frag: Fragment) {
-        when (frag) {
-            is ColorFragment -> {
-                if (frag1 == null) {
-                    frag1 = ColorFragment()
-                }
-                supportFragmentManager.beginTransaction().replace(R.id.fragframe, frag!!).commit()
-            }
-        }
-    }
-
 
     fun mergeValues(){
         //0,50,100
@@ -117,6 +106,16 @@ class MainActivity : FragmentActivity(), ColorFragment.fragmentListener {
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+}
+class CustomViewHolder(val view: View): RecyclerView.ViewHolder(view) {
+    init {
+        view.setOnClickListener {
+            val intent = Intent(view.context, ColorFragment::class.java)
+
+            view.context.startActivity(intent)
         }
     }
 }

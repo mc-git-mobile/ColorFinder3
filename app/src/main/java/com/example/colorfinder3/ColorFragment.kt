@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.SurfaceView
 import android.view.View
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_layout.*
 import java.lang.ClassCastException
 
-class ColorFragment : Fragment() {
+class ColorFragment : AppCompatActivity() {
 
     var value1 = 0
     var value2 = 0
@@ -23,47 +24,34 @@ class ColorFragment : Fragment() {
 
     var value = intArrayOf(0, 0, 0)
 
-    private var activityCallback: ColorFragment.fragmentListener? = null
 
-    interface fragmentListener {
-        fun onDoneClick1(sur: IntArray)
-        fun switchFragment(frag: Fragment)
+    override fun onCreate(savedInstanceState: Bundle?) {
 
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        try {
-            activityCallback = context as fragmentListener
-        } catch (e: ClassCastException) {
-            throw ClassCastException(
-                context?.toString()
-                        + " must implement fragmentListener"
-            )
-        }
-    }
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_layout)
+        //setSupportActionBar(toolbar)
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        //val view = inflater?.inflate(R.layout.fragment_layout, container, false)
 
 
-        val view = inflater?.inflate(R.layout.fragment_layout, container, false)
 
-        val seekBar1: SeekBar? = view?.findViewById(R.id.SeekBarRed)
-        val seekBar2: SeekBar? = view?.findViewById(R.id.SeekBarGreen)
-        val seekBar3: SeekBar? = view?.findViewById(R.id.SeekBarBlue)
 
-        val seekVal1: TextView? = view?.findViewById(R.id.SeekValRed)
-        val seekVal2: TextView? = view?.findViewById(R.id.SeekValGreen)
-        val seekVal3: TextView? = view?.findViewById(R.id.SeekValBlue)
+        val seekBar1 = this.findViewById<SeekBar>(R.id.SeekBarRed)
+        val seekBar2 = this.findViewById<SeekBar>(R.id.SeekBarGreen)
+        val seekBar3 = this.findViewById<SeekBar>(R.id.SeekBarBlue)
 
-        seekBar1?.progress = value1
-        seekBar2?.progress = value2
-        seekBar3?.progress = value3
+        val seekVal1 = this.findViewById<TextView>(R.id.SeekValRed)
+        val seekVal2 = this.findViewById<TextView>(R.id.SeekValGreen)
+        val seekVal3 = this.findViewById<TextView>(R.id.SeekValBlue)
 
-        val surface4: SurfaceView? = view?.findViewById(R.id.surfaceView)
+        seekBar1.progress = value1
+        seekBar2.progress = value2
+        seekBar3.progress = value3
 
-        val doneButton: Button? = view?.findViewById(R.id.save)
+        val surface4 = this.findViewById<SurfaceView>(R.id.surfaceView)
+
+        //val doneButton: Button? = view?.findViewById(R.id.save)
 
         //***************************************************************************
         // Seek bar 1 controls
@@ -108,16 +96,22 @@ class ColorFragment : Fragment() {
         })
         //***************************************************************************
 
-        doneButton?.setOnClickListener { doneButtonClicked(it) }
+        //doneButton?.setOnClickListener { doneButtonClicked(it) }
 
-        return inflater.inflate(R.layout.fragment_layout, container, false)
+        //return inflater.inflate(R.layout.fragment_layout, container, false)
 
     } // End of on_Create
-
+/*
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+    */
+/*
     private fun doneButtonClicked(view: View) {
         activityCallback?.onDoneClick1(value)
     }
-
+*/
 
 
 
