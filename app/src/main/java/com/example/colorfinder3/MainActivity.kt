@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         surface1.setOnClickListener {
             //val coast= Toast.makeText(applicationContext, "Insert color one here", Toast.LENGTH_LONG)
             //coast.show()
-            val intent = Intent(this, ColorFragment :: class.java)
+            val intent = Intent("com.example.assignment_two.ACTION_COLOR")
             //var col1 = intArrayOf(0, 0, 0)
             //val red = "0"
             //val blue = "0"
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         surface2.setOnClickListener {
             //val coast= Toast.makeText(applicationContext, "Insert color two here", Toast.LENGTH_LONG)
             //coast.show()
-            val intent = Intent(this, ColorFragment :: class.java)
+            //val intent = Intent(this, ColorFragment :: class.java)
             //var col1 = intArrayOf(0, 0, 0)
             //val red = "0"
             //val blue = "0"
@@ -94,9 +94,9 @@ class MainActivity : AppCompatActivity() {
             //intent.putExtra("red", red)
             //intent.putExtra("blue", blue)
             //intent.putExtra("green", green)
-            intent.putExtra("col2", color2)
+            //intent.putExtra("col2", color2)
 
-            startActivity(intent)
+            //startActivity(intent)
         }
 
         seekBar1.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
@@ -148,6 +148,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+/*
 class CustomViewHolder(val view: View): RecyclerView.ViewHolder(view) {
     init {
         view.setOnClickListener {
@@ -157,3 +158,4 @@ class CustomViewHolder(val view: View): RecyclerView.ViewHolder(view) {
         }
     }
 }
+*/
