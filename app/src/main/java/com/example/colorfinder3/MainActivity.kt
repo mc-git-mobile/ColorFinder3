@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val intent = Intent("com.example.assignment_two")
+
 
         //var button1 = this.findViewById<Button>(R.id.pick1)
 
@@ -73,7 +75,8 @@ class MainActivity : AppCompatActivity() {
         surface1.setOnClickListener {
             //val coast= Toast.makeText(applicationContext, "Insert color one here", Toast.LENGTH_LONG)
             //coast.show()
-            val intent = Intent("com.example.assignment_two.ACTION_COLOR")
+            //val intent = Intent("com.example.assignment_two.ACTION_COLOR")
+
             //var col1 = intArrayOf(0, 0, 0)
             //val red = "0"
             //val blue = "0"
@@ -83,7 +86,10 @@ class MainActivity : AppCompatActivity() {
             //intent.putExtra("green", green)
             //intent.putExtra("col1", color1)
             //startActivityForResult(intent, 1)
-            startActivity(intent)
+            val intent = Intent("com.example.assignment_two.ACTION_COLOR")
+
+            startActivityForResult(intent,1)
+            //startActivity(intent)
 
             //startActivity(intent)
         }
