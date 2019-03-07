@@ -35,9 +35,6 @@ class MainActivity : AppCompatActivity() {
     var a : Boolean? = false
     var b :Boolean? = false
 
-    //var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
-    //var surface2 = this.findViewById<SurfaceView>(R.id.mirror2)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +42,13 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent("com.example.assignment_two")
 
 
-        //var button1 = this.findViewById<Button>(R.id.pick1)
 
 
         var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
         var surface2 = this.findViewById<SurfaceView>(R.id.mirror2)
         var seekBar1 = this.findViewById<SeekBar>(R.id.seekBar)
         var colorVal = this.findViewById<TextView>(R.id.seekView)
-        //seekBar1.progress = seekView
+
         mirror.setBackgroundColor(Color.rgb(color1[0], color1[1], color1[2]))
         mirror2.setBackgroundColor(Color.rgb(color2[0], color2[1], color2[2]))
         colorVal.text = textValue.toString()
@@ -66,7 +62,6 @@ class MainActivity : AppCompatActivity() {
 
             startActivityForResult(intent,1)
 
-            //startActivity(intent)
         }
 
         surface2.setOnClickListener {
@@ -75,19 +70,6 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("key", 1)
 
             startActivityForResult(intent,1)
-            //val coast= Toast.makeText(applicationContext, "Insert color two here", Toast.LENGTH_LONG)
-            //coast.show()
-            //val intent = Intent(this, ColorFragment :: class.java)
-            //var col1 = intArrayOf(0, 0, 0)
-            //val red = "0"
-            //val blue = "0"
-            //val green = "0"
-            //intent.putExtra("red", red)
-            //intent.putExtra("blue", blue)
-            //intent.putExtra("green", green)
-            //intent.putExtra("col2", color2)
-
-            //startActivity(intent)
         }
 
         seekBar1.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
