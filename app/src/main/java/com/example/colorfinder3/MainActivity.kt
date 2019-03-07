@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
         surface1.setOnClickListener {
             a =true
-            val intent = Intent("com.example.assignment_two.ACTION_COLOR")
+            val intent = Intent("com.example.colorfinder2point0.ACTION_COLOR")
 
             intent.putExtra("key", 1)
 
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
         surface2.setOnClickListener {
             b = true
-            val intent = Intent("com.example.assignment_two.ACTION_COLOR")
+            val intent = Intent("com.example.colorfinder2point0.ACTION_COLOR")
             intent.putExtra("key", 1)
 
             startActivityForResult(intent,1)
@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity() {
                 toast.show()
                 true
             }
-            R.id.action_help -> {
+            R.id.helpb -> {
                 val toast= Toast.makeText(applicationContext, "To choose a color, click on either side square", Toast.LENGTH_LONG)
                 toast.show()
                 true
