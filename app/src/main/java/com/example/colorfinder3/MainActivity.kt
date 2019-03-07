@@ -39,9 +39,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val intent = Intent("com.example.assignment_two")
-
-
+        //val intent = Intent("com.example.assignment_two")
 
 
         var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
