@@ -127,21 +127,23 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
-    /*
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                val result = data!!.getIntArrayExtra("result")
-                color1 = result
+                val result = data!!.getStringExtra("result")
+                val coast= Toast.makeText(applicationContext, result, Toast.LENGTH_LONG)
+                coast.show()
+
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result
             }
         }
     }//onActivityResult
-    */
+
 
 
     fun mergeValues(){
