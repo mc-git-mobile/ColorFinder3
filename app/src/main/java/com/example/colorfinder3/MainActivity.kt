@@ -108,6 +108,10 @@ class MainActivity : AppCompatActivity() {
 
                     surface1.setBackgroundColor(Color.rgb(result[0], result[1], result[2]))
                     a = false
+                    var mid = this.findViewById<SurfaceView>(R.id.mergedColor)
+                    mid.setBackgroundColor(Color.rgb(result[0], result[1], result[2]))
+
+
                 }
                 else if (b == true){
                     val result = data!!.getIntegerArrayListExtra("result")
@@ -117,6 +121,8 @@ class MainActivity : AppCompatActivity() {
 
                     surface2.setBackgroundColor(Color.rgb(result[0], result[1], result[2]))
                     b = false
+                    var mid = this.findViewById<SurfaceView>(R.id.mergedColor)
+                    mid.setBackgroundColor(Color.rgb(result[0], result[1], result[2]))
 
                 }
 
