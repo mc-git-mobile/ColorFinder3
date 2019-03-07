@@ -54,6 +54,9 @@ class MainActivity : AppCompatActivity() {
         colorVal.text = textValue.toString()
 
 
+        setSupportActionBar(toolbar)
+        toolbar.setLogo(R.drawable.diamond)
+
         surface1.setOnClickListener {
             a =true
             val intent = Intent("com.example.assignment_two.ACTION_COLOR")
@@ -151,7 +154,16 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                val toast= Toast.makeText(applicationContext, "Just use the slide bar to merge your chosen colors", Toast.LENGTH_LONG)
+                toast.show()
+                true
+            }
+            R.id.action_help -> {
+                val toast= Toast.makeText(applicationContext, "To choose a color, click on either side square", Toast.LENGTH_LONG)
+                toast.show()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
