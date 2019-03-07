@@ -17,6 +17,9 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.io.Serializable
+import android.app.Activity
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -78,9 +81,11 @@ class MainActivity : AppCompatActivity() {
             //intent.putExtra("red", red)
             //intent.putExtra("blue", blue)
             //intent.putExtra("green", green)
-            intent.putExtra("col1", color1)
-
+            //intent.putExtra("col1", color1)
+            //startActivityForResult(intent, 1)
             startActivity(intent)
+
+            //startActivity(intent)
         }
 
         surface2.setOnClickListener {
@@ -116,6 +121,21 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
+    /*
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                val result = data!!.getIntArrayExtra("result")
+                color1 = result
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }//onActivityResult
+    */
 
 
     fun mergeValues(){
@@ -148,14 +168,3 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-/*
-class CustomViewHolder(val view: View): RecyclerView.ViewHolder(view) {
-    init {
-        view.setOnClickListener {
-            val intent = Intent(view.context, ColorFragment::class.java)
-
-            view.context.startActivity(intent)
-        }
-    }
-}
-*/
