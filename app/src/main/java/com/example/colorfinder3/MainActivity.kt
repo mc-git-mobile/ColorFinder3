@@ -18,8 +18,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.io.Serializable
 import android.app.Activity
-
-
+import java.util.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,10 +28,13 @@ class MainActivity : AppCompatActivity() {
     var textValue = 0
     //these arrays are the ones that need to be changed
     //you just need to get the saved color from the other ap and change these array values
-    var color1 = intArrayOf(100, 5, 239)
+    var color1 = arrayListOf(100, 5, 239)
     var color2 = intArrayOf(100, 150, 20)
     //this array is for the merged one
     var color3 = intArrayOf(0, 0, 0)
+    //var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
+    //var surface2 = this.findViewById<SurfaceView>(R.id.mirror2)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,9 +135,15 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                val result = data!!.getStringExtra("result")
-                val coast= Toast.makeText(applicationContext, result, Toast.LENGTH_LONG)
-                coast.show()
+                val result = data!!.getIntegerArrayListExtra("result")
+                color1 = result
+
+                var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
+
+                surface1.setBackgroundColor(Color.rgb(result[0],result[1],result[2]))
+
+                //val coast= Toast.makeText(applicationContext, result, Toast.LENGTH_LONG)
+                //coast.show()
 
             }
             if (resultCode == Activity.RESULT_CANCELED) {
