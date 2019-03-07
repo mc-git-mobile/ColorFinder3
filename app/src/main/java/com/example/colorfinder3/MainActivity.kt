@@ -17,6 +17,8 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.io.Serializable
+import android.app.Activity
+import java.util.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,77 +28,48 @@ class MainActivity : AppCompatActivity() {
     var textValue = 0
     //these arrays are the ones that need to be changed
     //you just need to get the saved color from the other ap and change these array values
-    var color1 = intArrayOf(100, 5, 239)
-    var color2 = intArrayOf(100, 150, 20)
+    var color1 = arrayListOf(100, 5, 239)
+    var color2 = arrayListOf(100, 150, 20)
     //this array is for the merged one
     var color3 = intArrayOf(0, 0, 0)
+    var a : Boolean? = false
+    var b :Boolean? = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val intent = Intent("com.example.assignment_two")
 
-        //var button1 = this.findViewById<Button>(R.id.pick1)
+
 
 
         var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
         var surface2 = this.findViewById<SurfaceView>(R.id.mirror2)
         var seekBar1 = this.findViewById<SeekBar>(R.id.seekBar)
         var colorVal = this.findViewById<TextView>(R.id.seekView)
-        //seekBar1.progress = seekView
+
         mirror.setBackgroundColor(Color.rgb(color1[0], color1[1], color1[2]))
         mirror2.setBackgroundColor(Color.rgb(color2[0], color2[1], color2[2]))
         colorVal.text = textValue.toString()
-/*
-        button1.setOnClickListener {
-            val intent = Intent(this, ColorFragment :: class.java)
-            var col1 = intArrayOf(0, 0, 0)
-            val red = "0"
-            val blue = "0"
-            val green = "0"
-            //intent.putExtra("red", red)
-            //intent.putExtra("blue", blue)
-            //intent.putExtra("green", green)
-            intent.putExtra("col1", color1)
 
-            startActivity(intent)
-
-
-            /////////////////////////////////////
-            //data class Attachment(val name: String, val Content: String) : Serializable
-            /////////////////////////////////////
-        }
-        */
 
         surface1.setOnClickListener {
-            //val coast= Toast.makeText(applicationContext, "Insert color one here", Toast.LENGTH_LONG)
-            //coast.show()
-            val intent = Intent(this, ColorFragment :: class.java)
-            //var col1 = intArrayOf(0, 0, 0)
-            //val red = "0"
-            //val blue = "0"
-            //val green = "0"
-            //intent.putExtra("red", red)
-            //intent.putExtra("blue", blue)
-            //intent.putExtra("green", green)
-            intent.putExtra("col1", color1)
+            a =true
+            val intent = Intent("com.example.assignment_two.ACTION_COLOR")
 
-            startActivity(intent)
+            intent.putExtra("key", 1)
+
+            startActivityForResult(intent,1)
+
         }
 
         surface2.setOnClickListener {
-            //val coast= Toast.makeText(applicationContext, "Insert color two here", Toast.LENGTH_LONG)
-            //coast.show()
-            val intent = Intent(this, ColorFragment :: class.java)
-            //var col1 = intArrayOf(0, 0, 0)
-            //val red = "0"
-            //val blue = "0"
-            //val green = "0"
-            //intent.putExtra("red", red)
-            //intent.putExtra("blue", blue)
-            //intent.putExtra("green", green)
-            intent.putExtra("col2", color2)
+            b = true
+            val intent = Intent("com.example.assignment_two.ACTION_COLOR")
+            intent.putExtra("key", 1)
 
-            startActivity(intent)
+            startActivityForResult(intent,1)
         }
 
         seekBar1.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
@@ -116,6 +89,42 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+
+                if (a == true) {
+
+                    val result = data!!.getIntegerArrayListExtra("result")
+                    color1 = result
+
+                    var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
+
+                    surface1.setBackgroundColor(Color.rgb(result[0], result[1], result[2]))
+                    a = false
+                }
+                else if (b == true){
+                    val result = data!!.getIntegerArrayListExtra("result")
+                    color2 = result
+
+                    var surface2 = this.findViewById<SurfaceView>(R.id.mirror2)
+
+                    surface2.setBackgroundColor(Color.rgb(result[0], result[1], result[2]))
+                    b = false
+
+                }
+
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }//onActivityResult
+
+
 
 
     fun mergeValues(){
@@ -147,13 +156,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-}
-class CustomViewHolder(val view: View): RecyclerView.ViewHolder(view) {
-    init {
-        view.setOnClickListener {
-            val intent = Intent(view.context, ColorFragment::class.java)
-
-            view.context.startActivity(intent)
-        }
-    }
 }
