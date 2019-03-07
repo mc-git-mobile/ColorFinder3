@@ -29,9 +29,12 @@ class MainActivity : AppCompatActivity() {
     //these arrays are the ones that need to be changed
     //you just need to get the saved color from the other ap and change these array values
     var color1 = arrayListOf(100, 5, 239)
-    var color2 = intArrayOf(100, 150, 20)
+    var color2 = arrayListOf(100, 150, 20)
     //this array is for the merged one
     var color3 = intArrayOf(0, 0, 0)
+    var a : Boolean? = false
+    var b :Boolean? = false
+
     //var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
     //var surface2 = this.findViewById<SurfaceView>(R.id.mirror2)
 
@@ -75,28 +78,16 @@ class MainActivity : AppCompatActivity() {
         */
 
         surface1.setOnClickListener {
-            //val coast= Toast.makeText(applicationContext, "Insert color one here", Toast.LENGTH_LONG)
-            //coast.show()
-            //val intent = Intent("com.example.assignment_two.ACTION_COLOR")
-
-            //var col1 = intArrayOf(0, 0, 0)
-            //val red = "0"
-            //val blue = "0"
-            //val green = "0"
-            //intent.putExtra("red", red)
-            //intent.putExtra("blue", blue)
-            //intent.putExtra("green", green)
-            //intent.putExtra("col1", color1)
-            //startActivityForResult(intent, 1)
+            a =true
             val intent = Intent("com.example.assignment_two.ACTION_COLOR")
-
             startActivityForResult(intent,1)
-            //startActivity(intent)
-
             //startActivity(intent)
         }
 
         surface2.setOnClickListener {
+            b = true
+            val intent = Intent("com.example.assignment_two.ACTION_COLOR")
+            startActivityForResult(intent,1)
             //val coast= Toast.makeText(applicationContext, "Insert color two here", Toast.LENGTH_LONG)
             //coast.show()
             //val intent = Intent(this, ColorFragment :: class.java)
@@ -135,15 +126,27 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                val result = data!!.getIntegerArrayListExtra("result")
-                color1 = result
 
-                var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
+                if (a == true) {
 
-                surface1.setBackgroundColor(Color.rgb(result[0],result[1],result[2]))
+                    val result = data!!.getIntegerArrayListExtra("result")
+                    color1 = result
 
-                //val coast= Toast.makeText(applicationContext, result, Toast.LENGTH_LONG)
-                //coast.show()
+                    var surface1 = this.findViewById<SurfaceView>(R.id.mirror)
+
+                    surface1.setBackgroundColor(Color.rgb(result[0], result[1], result[2]))
+                    a = false
+                }
+                else if (b == true){
+                    val result = data!!.getIntegerArrayListExtra("result")
+                    color2 = result
+
+                    var surface2 = this.findViewById<SurfaceView>(R.id.mirror2)
+
+                    surface2.setBackgroundColor(Color.rgb(result[0], result[1], result[2]))
+                    b = false
+
+                }
 
             }
             if (resultCode == Activity.RESULT_CANCELED) {
@@ -151,6 +154,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }//onActivityResult
+
 
 
 
