@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         mirror.setBackgroundColor(Color.rgb(color1[0], color1[1], color1[2]))
         mirror2.setBackgroundColor(Color.rgb(color2[0], color2[1], color2[2]))
-        colorVal.text = textValue.toString()
+        colorVal.text = "% $textValue"
 
 
         setSupportActionBar(toolbar)
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onProgressChanged(seekBarBlue: SeekBar, i: Int, b: Boolean) {
                 textValue = i
-                colorVal.text = "$textValue"
+                colorVal.text = "% $textValue"
                 mergeValues()
                 mergedColor.setBackgroundColor(Color.rgb(color3[0], color3[1], color3[2]))
             }
@@ -111,6 +111,14 @@ class MainActivity : AppCompatActivity() {
                     var mid = this.findViewById<SurfaceView>(R.id.mergedColor)
                     mid.setBackgroundColor(Color.rgb(result[0], result[1], result[2]))
 
+                    var seekBar1 = this.findViewById<SeekBar>(R.id.seekBar)
+                    var colorVal = this.findViewById<TextView>(R.id.seekView)
+
+                    colorVal.text = "% 0"
+
+                    seekBar1.setProgress(0)
+
+
 
                 }
                 else if (b == true){
@@ -123,6 +131,14 @@ class MainActivity : AppCompatActivity() {
                     b = false
                     var mid = this.findViewById<SurfaceView>(R.id.mergedColor)
                     mid.setBackgroundColor(Color.rgb(result[0], result[1], result[2]))
+
+
+                    var seekBar1 = this.findViewById<SeekBar>(R.id.seekBar)
+                    var colorVal = this.findViewById<TextView>(R.id.seekView)
+
+                    colorVal.text = "% 100"
+
+                    seekBar1.setProgress(100)
 
                 }
 
